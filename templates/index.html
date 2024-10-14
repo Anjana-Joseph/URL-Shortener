@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        /* Simple CSS styling for better UI */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        label, input, button {
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border: 1px solid #ddd;
+        }
+        .result a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // Optional: Add JavaScript for interactivity (e.g., copying the shortened URL to clipboard)
+        function copyToClipboard() {
+            const shortUrlElement = document.getElementById("shortUrl");
+            navigator.clipboard.writeText(shortUrlElement.href).then(() => {
+                alert("Shortened URL copied to clipboard!");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form method="POST">
+        <label for="long_url">Enter Long URL:</label>
+        <input type="text" id="long_url" name="long_url" required>
+
+        <label for="custom_url">Custom Short URL (Optional):</label>
+        <input type="text" id="custom_url" name="custom_url" placeholder="Enter a custom short URL (e.g., mylink)">
+
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <div class="result">
+        <p>Shortened URL: 
+            <a id="shortUrl" href="{{ request.host_url }}{{ short_url }}">{{ request.host_url }}{{ short_url }}</a>
+        </p>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+    {% endif %}
+</body>
+</html>
