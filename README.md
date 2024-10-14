@@ -20,7 +20,7 @@ A simple web application that converts long URLs into shorter, more manageable l
 
 Follow these instructions to set up and run the project on your local machine.
 
-**Prerequisites:**
+**Prerequisites**
 - Python (3.x recommended)
 - Flask (Install using pip)
 
